@@ -7,9 +7,9 @@ public class MapEditor : Editor
 {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
-
+        
         WorldChunkGenerator map = target as WorldChunkGenerator;
-
         map.GenerateMap();
+
     }
 }

@@ -21,12 +21,16 @@ public class WorldChunkGenerator : MonoBehaviour
             DestroyImmediate(transform.Find(HolderName).gameObject);
         }
         Transform mapHolder = new GameObject(HolderName).transform;
-        mapHolder.parent = transform;
-
+        mapHolder.parent = this.transform;
+        mapHolder.localPosition = Vector3.zero;
+        BoxCollider floorCollider = mapHolder.gameObject.AddComponent(typeof(BoxCollider)) as BoxCollider;
+        floorCollider.size = new Vector3(mapSize.x * tileSize.x, 0.1f, mapSize.y * tileSize.y);
+        
         for (int x = 0; x < mapSize.x; x++) {
             for (int y = 0; y < mapSize.y; y++) {
                 Vector3 tilePosition = new Vector3((-mapSize.x/2 + 0.5f + x)*tileSize.x, 0,(-mapSize.y/2 + 0.5f + y)*tileSize.y);
-                Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90), mapHolder.transform) as Transform;
+                Transform newTile = Instantiate(tilePrefab, Vector3.zero, Quaternion.Euler(Vector3.right * 90), mapHolder) as Transform;
+                newTile.localPosition = tilePosition;
                 newTile.localScale = new Vector3(tileSize.x * (1 - outLinePercent), tileSize.y * (1 - outLinePercent), 1);
                 
             }
