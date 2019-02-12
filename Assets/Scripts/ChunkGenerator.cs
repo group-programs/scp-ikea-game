@@ -6,7 +6,11 @@ public class ChunkGenerator : MonoBehaviour
 {
     public int seed;
     private float[] noiseValues;
+    private GameObject[] rooms;
 
+    void Awake() {
+        rooms = Resources.LoadAll<GameObject>("Rooms");        
+    }
     void Start() {
         Random.seed = seed;
         noiseValues = new float[2];
@@ -18,8 +22,11 @@ public class ChunkGenerator : MonoBehaviour
     }
     public void GenerateChunk(float randomSeed)
     {
-        Debug.Log("Chunk generated, seed: " + randomSeed*10000000);
+        randomSeed = randomSeed*10000000;
+        Debug.Log("Chunk generated, seed: " + randomSeed);
 
-
+        foreach (var room in rooms) {
+            
+        }
     }
 }
