@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class ChunkGenerator : MonoBehaviour
 {
+    public int seed;
     private float[] noiseValues;
+
     void Start() {
-        Random.seed = 42;
+        Random.seed = seed;
         noiseValues = new float[2];
         int i = 0;
         while (i < noiseValues.Length) {
-            noiseValues[i] = Random.value;
-            Debug.Log(noiseValues[i]);
+            GenerateChunk(Random.value);
             i++;
         }
+    }
+    public void GenerateChunk(float randomSeed)
+    {
+        Debug.Log("Chunk generated, seed: " + randomSeed*10000000);
+
+
     }
 }
