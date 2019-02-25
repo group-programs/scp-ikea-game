@@ -9,7 +9,7 @@ public class MapEditor : Editor
         base.OnInspectorGUI();
         return;
         WorldChunkGenerator map = target as WorldChunkGenerator;
-        map.GenerateMap();
+        //map.CreateNewChunk();
 
     }
 }
